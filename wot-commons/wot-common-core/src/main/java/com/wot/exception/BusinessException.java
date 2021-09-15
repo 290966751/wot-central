@@ -2,6 +2,8 @@ package com.wot.exception;
 
 import java.io.Serializable;
 
+import static org.apache.commons.lang3.StringUtils.join;
+
 /**
  * 业务异常
  */
@@ -37,6 +39,7 @@ public class BusinessException extends RuntimeException implements Serializable 
      * @param errorInfo 异常具体信息
      */
     public BusinessException(String errorLevel, String errorCode, String errorInfo) {
+        super(join(errorLevel, "|", errorCode, "|", errorInfo));
         this.errorLevel = errorLevel;
         this.errorCode = errorCode;
         this.errorInfo = errorInfo;

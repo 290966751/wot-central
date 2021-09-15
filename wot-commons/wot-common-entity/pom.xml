@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -9,9 +8,9 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>wot-common-core</artifactId>
-    <name>wot-common-core</name>
-    <description>公共基础组件</description>
+    <artifactId>wot-common-entity</artifactId>
+    <name>wot-common-entity</name>
+    <description>通用实体 | 相关枚举、实体存放</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,11 +19,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.wot</groupId>
-            <artifactId>wot-common-entity</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

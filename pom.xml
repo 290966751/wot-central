@@ -18,7 +18,18 @@
         <hutool.version>5.1.4</hutool.version>
         <redisson-starter.version>3.14.1</redisson-starter.version>
         <commons-io.version>2.6</commons-io.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -31,6 +42,11 @@
             <dependency>
                 <groupId>com.wot</groupId>
                 <artifactId>wot-common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wot</groupId>
+                <artifactId>wot-common-entity</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--modules version end-->
@@ -62,13 +78,29 @@
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
         <!--公共组件-->
         <module>wot-commons</module>
+        <!--定时任务-->
+        <module>wot-job</module>
     </modules>
-    
+
 </project>

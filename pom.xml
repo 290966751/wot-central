@@ -101,6 +101,9 @@
         <module>wot-commons</module>
         <!--定时任务-->
         <module>wot-job</module>
+        <!--后端接口-->
+        <module>wot-web</module>
+        <module>demo</module>
     </modules>
 
 </project>

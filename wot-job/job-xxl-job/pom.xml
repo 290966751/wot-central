@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>wot-job</artifactId>
+        <groupId>com.wot</groupId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>job-xxl-job</artifactId>
+    <name>job-xxl-job</name>
+<!--    <version>${project.parent.version}</version>-->
+    <description>定时任务XXL-JOB</description>
+    <packaging>pom</packaging>
+<!--    <packaging>jar</packaging>-->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <!--<dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>-->
+
+    <modules>
+        <!--调度中心-->
+        <module>xxl-job-admin</module>
+        <!--公共依赖-->
+        <module>xxl-job-core</module>
+        <!--Springboot版本，通过Springboot管理执行器-->
+        <module>xxl-job-executor-sample-springboot</module>
+    </modules>
+
+</project>

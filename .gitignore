@@ -1,7 +1,7 @@
 .idea/
 logs/
 target/
-.txlcn/
+#.txlcn/
 
 *.iml
-*.versionsBackup
+#*.versionsBackup

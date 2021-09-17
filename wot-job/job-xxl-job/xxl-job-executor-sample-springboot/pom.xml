@@ -15,7 +15,7 @@
 <!--    <packaging>pom</packaging>-->
     <name>${project.artifactId}</name>
     <description>Example executor project for spring boot.</description>
-    <version>${project.parent.version}</version>
+    <version>1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

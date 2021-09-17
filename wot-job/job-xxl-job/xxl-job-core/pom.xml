@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>xxl-job-core</artifactId>
-    <version>${project.parent.version}</version>
+    <version>1.0</version>
     <name>${project.artifactId}</name>
 <!--    <packaging>pom</packaging>-->
     <packaging>jar</packaging>

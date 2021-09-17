@@ -6,7 +6,7 @@
         <artifactId>wot-job</artifactId>
         <groupId>com.wot</groupId>
         <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
+<!--        <relativePath>../pom.xml</relativePath>-->
     </parent>
 
     <artifactId>job-xxl-job</artifactId>

@@ -10,12 +10,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>demo</artifactId>
+    <packaging>pom</packaging>
     <description>Demo</description>
+    <modules>
+        <!--部分组件测试demo-->
+        <module>demo-learn</module>
+        <!--hystrix测试demo-->
+        <module>demo-hystrix</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
 </project>

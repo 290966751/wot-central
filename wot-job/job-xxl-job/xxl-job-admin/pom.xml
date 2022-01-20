@@ -12,6 +12,14 @@
     <version>1.0</version>
 <!--    <packaging>jar</packaging>-->
 
+<!--    <properties>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--        <maven.compiler.source>1.8</maven.compiler.source>-->
+<!--        <maven.compiler.target>1.8</maven.compiler.target>-->
+<!--        &lt;!&ndash;maven方式跳过maven test, 等同$ mvn package -Dmaven.test.skip=true&ndash;&gt;-->
+<!--        <maven.test.skip>true</maven.test.skip>-->
+<!--    </properties>-->
+
     <dependencies>
 
         <!-- starter-web：spring-webmvc + autoconfigure + logback + yaml + tomcat -->
@@ -64,12 +72,26 @@
 
     </dependencies>
 
-    <!--<build>
+    <build>
+        <!--打包时主动设置filtering为true排除配置文件-->
+        <resources>
+            <!-- fonts file cannot use filter as the data structure of byte file will be changed via filter -->
+            <resource>
+                <!-- 设定主资源目录  -->
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>application.properties</exclude>
+                    <exclude>logback.xml</exclude>
+                </excludes>
+                <!-- maven default生命周期，process-resources阶段执行maven-resources-plugin插件的resources目标处理主资源目下的资源文件时，是否对主资源目录开启资源过滤 -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-&lt;!&ndash;				<version>${spring-boot.version}</version>&ndash;&gt;
+<!--				<version>${spring-boot.version}</version>-->
                 <executions>
                     <execution>
                         <goals>
@@ -78,8 +100,8 @@
                     </execution>
                 </executions>
             </plugin>
-            &lt;!&ndash; docker &ndash;&gt;
-            <plugin>
+            <!-- docker -->
+            <!--<plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
@@ -95,28 +117,31 @@
                         </resource>
                     </resources>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
-    </build>-->
+    </build>
 
-    <build>
+    <!--<build>
         <plugins>
-            <!-- 指定启动类，将依赖打成外部jar包 -->
+            &lt;!&ndash; 指定启动类，将依赖打成外部jar包 &ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
-                        <!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件 -->
+                        &lt;!&ndash; 生成的jar中，不要包含pom.xml和pom.properties这两个文件 &ndash;&gt;
                         <addMavenDescriptor>false</addMavenDescriptor>
                         <manifest>
-                            <!-- 是否要把第三方jar加入到类构建路径 -->
+                            &lt;!&ndash; 是否要把第三方jar加入到类构建路径 &ndash;&gt;
                             <addClasspath>true</addClasspath>
-                            <!-- 外部依赖jar包的最终位置 -->
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <!-- 项目启动类 -->
+                            &lt;!&ndash; 外部依赖jar包的最终位置 &ndash;&gt;
+&lt;!&ndash;                            <classpathPrefix>lib/</classpathPrefix>&ndash;&gt;
+                            &lt;!&ndash; 项目启动类 &ndash;&gt;
                             <mainClass>com.xxl.job.admin.XxlJobAdminApplication</mainClass>
                         </manifest>
+&lt;!&ndash;                        <manifestEntries>&ndash;&gt;
+&lt;!&ndash;                            <Class-Path>config/</Class-Path>&ndash;&gt;
+&lt;!&ndash;                        </manifestEntries>&ndash;&gt;
                     </archive>
                     <excludes>
                         <exclude>*.properties</exclude>
@@ -124,8 +149,8 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!--拷贝依赖到jar外面的lib目录-->
-            <plugin>
+            &lt;!&ndash;拷贝依赖到jar外面的lib目录&ndash;&gt;
+            &lt;!&ndash;<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -143,8 +168,8 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>&ndash;&gt;
         </plugins>
-    </build>
+    </build>-->
 
 </project>

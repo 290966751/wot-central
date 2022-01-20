@@ -1,7 +1,20 @@
 #!/bin/bash
+SOURCE="$0"
+while [ -h "$SOURCE"  ]; do # resolve $SOURCE until the file is no longer a symlink
+    DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd  )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /*  ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd  )"
+
 #这里可替换为你自己的执行程序，其他代码无需更改
-APP_NAME=xxl-job-admin-1.0.jar
-PARAMS='--logging.config=config/logback.xml'
+APP_NAME=xxl-job-admin-1.0.0-SNAPSHOT.jar
+PARAMS="-server -Xmx4096m -Duser.timezone=GMT+08"
+SPRING_BOOT_PARAMS="--spring.config.location=${DIR}/../config/application.properties --logging.config=../config/logback.xml"
+#JARDR=$DIR'/../services/'$APP_NAME
+JARDR=$DIR'/../'$APP_NAME
+
+#echo $JARDR
 #cd `dirname $0`
 #使用说明，用来提示输入参数
 
@@ -19,16 +32,15 @@ function is_exist(){
     return 0
   fi
 }
- 
+
 #启动方法
 function start(){
   is_exist
   if [ $? -eq "0" ]; then
     echo "${APP_NAME} is already running! pid is ${pid}"
   else
-    nohup java -jar $APP_NAME $PARAMS > /dev/null 2>&1 &
+    nohup java $PARAMS -jar $JARDR $SPRING_BOOT_PARAMS > /dev/null 2>&1 &
     echo "${APP_NAME} is start success!"
-    #tail -f log/datainout.log
   fi
 }
  

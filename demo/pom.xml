@@ -17,6 +17,8 @@
         <module>demo-learn</module>
         <!--hystrix测试demo-->
         <module>demo-hystrix</module>
+        <!--部分工具存储-->
+        <module>tools</module>
     </modules>
 
     <properties>

@@ -44,7 +44,7 @@ public final class ChineseIdCardGenerator {
 
     public static void main(String[] args) {
         ChineseIdCardGenerator g = new ChineseIdCardGenerator();
-        System.out.println(g.generateByAreaStr("娄底1"));
+        System.out.println(g.generateByAreaStr("长沙1"));
         for (int i = 0; i < 10; i++) {
             System.out.print(g.generate());
             System.out.print("\t");

@@ -19,7 +19,7 @@ import java.util.Set;
  * ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
  *
  * //获取菜单对应表
- * SELECT a.oracle_menu_id,a.oracle_menu_caption,GROUP_CONCAT(DISTINCT b.oracle_func_table  separator '\r') FROM bop_config_yql a
+ * SELECT a.oracle_menu_id,a.oracle_menu_caption,GROUP_CONCAT(DISTINCT b.oracle_func_table ORDER BY b.oracle_func_table separator '\r') FROM bop_config_yql a
  *  LEFT JOIN bop_config_func_oracle_table_yql b on a.func_num = b.func_num
  * WHERE b.row_id IS NOT NULL AND b.oracle_func_table != '无'
  * GROUP BY a.oracle_menu_id
@@ -120,8 +120,8 @@ public class BopConfigFuncOracleTacleSqlInit extends BopConfigSqlInit {
     public static void main(String[] args) {
         BopConfigFuncOracleTacleSqlInit sqlInit = new BopConfigFuncOracleTacleSqlInit();
         sqlInit.initSql(
-                "D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\3-funcOracleTable.txt"
-                , "D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\5-funcOracleTableInitSql.sql"
+                "D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\3-funcOracleTable20220413.txt"
+                , "D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\5-funcOracleTableInitSql20220413.sql"
         );
     }
 }

@@ -294,8 +294,8 @@ public class BopConfigSqlInit {
         BopConfigSqlInit init = new BopConfigSqlInit();
 //        System.out.println(Arrays.toString(init.splitFuncNumAndName("(170002)LS_BOP账户管理_客户信息查询")));
 //        System.out.println(Arrays.toString(init.splitFuncNumAndName("(460051)LS_统计(账户)_股票质押风险名单客户查询")));
-        init.initSql("D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\1-menuInit.txt"
-                , "D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\2-menuInitSql.sql"
+        init.initSql("D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\1-menuInit20220413.txt"
+                , "D:\\LDtrader\\方正\\BOP\\菜单功能号整理\\2-menuInitSql20220413.sql"
                 /*, "", "证券账户开户"*/);
     }
 

@@ -61,7 +61,8 @@ public class SystemConfigNoQuery {
 //        String str = "4102,1264,70144,70228,70639,4132,4142,4146";//证券账户销户
 //        String str = "1209,70601,2068,2046,1270,4173,172,70382,70234,70098,70128,1139,1271,2377,70147,2044,2045,2068,70160,2527,70135,70395,70401,2557,70578,70587,70649,70523,2631,4166,1204,1292,70321,1100";//证券账户开户
 //        String str = "2024,1100,2295,2352,1263,2241,2182,70037,1255,2149,2184,2325,70470";//港股通开户
-        String str = "4144,2631";//港股通开户
+//        String str = "4144,2631";//港股通开户
+        String str = "2068,2045,70635";//限制维护
 
         String[] configNos = systemConfigNoQuery.getConfigNos(str);
         Map<String, String> systemConfigNo = systemConfigNoQuery.querySystemConfigNo(systemConfigNoQuery.getConnection(

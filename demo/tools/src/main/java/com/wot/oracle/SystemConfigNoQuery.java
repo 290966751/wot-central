@@ -43,6 +43,7 @@ public class SystemConfigNoQuery {
 
     public SystemConfigNoQuery() {
         //加载配置的jar路径
+        entries.add("D:\\workspaceLd\\git\\wot-central\\demo\\tools\\src\\main\\resources\\mysql-connector-java-8.0.11.jar");
         entries.add(oracleJAR);
         //加载jar，加载驱动
         this.driver = this.getDriver();
@@ -62,19 +63,22 @@ public class SystemConfigNoQuery {
 //        String str = "1209,70601,2068,2046,1270,4173,172,70382,70234,70098,70128,1139,1271,2377,70147,2044,2045,2068,70160,2527,70135,70395,70401,2557,70578,70587,70649,70523,2631,4166,1204,1292,70321,1100";//证券账户开户
 //        String str = "2024,1100,2295,2352,1263,2241,2182,70037,1255,2149,2184,2325,70470";//港股通开户
 //        String str = "4144,2631";//港股通开户
-        String str = "2068,2045,70635";//限制维护
+//        String str = "2068,2045,70635";//限制维护
+//        String str = "3165,70419,2640";//证券转托管
+//        String str = "2141,4142,4146,1255,2473,1264,1100,1139,70321,4102";//上海A股指定交易
+        String str = "2141,4142,1264,1100,1139,70321,4102";//上海A股撤销指定交易
 
         String[] configNos = systemConfigNoQuery.getConfigNos(str);
-        Map<String, String> systemConfigNo = systemConfigNoQuery.querySystemConfigNo(systemConfigNoQuery.getConnection(
-                ""
-                , ""
-                , ""
-                ), configNos);
         Map<String, String> systemConfigNo2 = systemConfigNoQuery.querySystemConfigNo(systemConfigNoQuery.getConnection(
-                ""
-                , ""
-                , ""
+                "jdbc:oracle:thin:@xxx.xxx.x.xx:1521:xxx"
+                , "x"
+                , "x"
         ), configNos);
+        Map<String, String> systemConfigNo = systemConfigNoQuery.querySystemConfigNo(systemConfigNoQuery.getConnection(
+                "jdbc:oracle:thin:@xxx.xxx.x.xx:1521:xxx"
+                , "x"
+                , "x"
+                ), configNos);
         systemConfigNo.putAll(systemConfigNo2);
         for (String configNo : configNos) {
             if (systemConfigNo.containsKey(configNo)) {
@@ -196,9 +200,9 @@ public class SystemConfigNoQuery {
             ClassLoader classloader = this.getCustomClassloader(entries);
             Class<?> clazz = Class.forName(DRIVER, true, classloader);
             driver = (Driver) clazz.newInstance();
-        } catch (Exception e) {
+        } catch (Throwable e) {
             e.printStackTrace();
-            throw new RuntimeException("get Driveri 异常");
+            throw new RuntimeException("get Driver 异常");
         }
         return driver;
     }
@@ -207,11 +211,12 @@ public class SystemConfigNoQuery {
      * 获取连接
      */
     public Connection getConnection(String url, String userName, String pwd) {
+        System.out.println("开始获取连接, " + url + "," + userName + "/" + pwd);
         Connection connection = null;
         try {
 //            Class.forName(driver);
 //            connection = DriverManager.getConnection(url, userName, pwd);
-            if (driver != null) {
+            if (driver == null) {
 //            Driver driver = getDriver();
                 driver = getDriver();;
             }
@@ -224,6 +229,9 @@ public class SystemConfigNoQuery {
             }
 //            props.putAll(otherProperties);
             connection = driver.connect(url, props);
+            if (connection == null) {
+                throw new RuntimeException("获取jdbc连接失败:" + url + "," + userName + "/" + pwd);
+            }
             System.out.println("获取连接成功, " + url + "," + userName + "/" + pwd);
 //        } catch (ClassNotFoundException e) {
 //            e.printStackTrace();

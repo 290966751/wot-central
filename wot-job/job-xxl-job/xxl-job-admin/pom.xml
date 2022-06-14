@@ -74,19 +74,19 @@
 
     <build>
         <!--打包时主动设置filtering为true排除配置文件-->
-        <resources>
-            <!-- fonts file cannot use filter as the data structure of byte file will be changed via filter -->
+        <!--<resources>
+            &lt;!&ndash; fonts file cannot use filter as the data structure of byte file will be changed via filter &ndash;&gt;
             <resource>
-                <!-- 设定主资源目录  -->
+                &lt;!&ndash; 设定主资源目录  &ndash;&gt;
                 <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>application.properties</exclude>
                     <exclude>logback.xml</exclude>
                 </excludes>
-                <!-- maven default生命周期，process-resources阶段执行maven-resources-plugin插件的resources目标处理主资源目下的资源文件时，是否对主资源目录开启资源过滤 -->
+                &lt;!&ndash; maven default生命周期，process-resources阶段执行maven-resources-plugin插件的resources目标处理主资源目下的资源文件时，是否对主资源目录开启资源过滤 &ndash;&gt;
                 <filtering>true</filtering>
             </resource>
-        </resources>
+        </resources>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -99,6 +99,23 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <resources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <filter>true</filter>
+                            <excludes>
+                                <exclude>application.properties</exclude>
+                                <exclude>logback.xml</exclude>
+                            </excludes>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
             <!-- docker -->
             <!--<plugin>

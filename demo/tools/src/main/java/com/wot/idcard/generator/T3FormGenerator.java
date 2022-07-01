@@ -42,9 +42,9 @@ public class T3FormGenerator {
         String tabName = projectPackage.substring(lastIndexOf + 1);
         String impotPackage = projectPackage.substring(0, lastIndexOf);
 //        tab = new Table( "TestForm", "com.fz.bop3.act.secu.form", "com.fz.bop3.pub.form.BaseForm");
-        tab = new Table( tabName, impotPackage, "com.fz.bop3.pub.form.BaseForm");
+        tab = new Table(tabName, impotPackage, "com.fz.bop3.pub.form.BaseForm");
 //        tab.addSuperInterface(new Parameter("java.io.Serializable", "Serializable"));//增加实现
-        tab.addIgnoreColumn("op_branch_no", "operator_no", "op_password", "op_station", "op_entrust_way");
+        tab.addIgnoreColumn("op_branch_no", "operator_no", "op_password", "op_station", "op_entrust_way", "position_str");
         tab.addPluginList(new SerializablePlugin());//增加序列化
         tab.addPluginList(new ToStringPlugin());//增加toString方法
         //获取表、字段
@@ -58,11 +58,17 @@ public class T3FormGenerator {
     }
 
     public static void main(String[] args) {
+//        T3FormGenerator t3FormGenerator = new T3FormGenerator(
+//                "C:\\Users\\luoding\\Desktop\\tmp\\a.txt",
+////                "C:\\Users\\luoding\\Desktop\\tmp\\",
+//                "D:\\workspaceFz\\itc-broker-fzbop3\\fzbop3\\fzbop-uf3-secu\\src\\main\\java",
+//                "com.fz.bop3.act.secu.form.ACodeOpen",
+//                "yaoql");
         T3FormGenerator t3FormGenerator = new T3FormGenerator(
-                "C:\\Users\\luoding\\Desktop\\tmp\\a.txt",
+                "C:\\Users\\luoding\\Desktop\\tmp\\postDataswapHolderOpenOut.txt",
 //                "C:\\Users\\luoding\\Desktop\\tmp\\",
                 "D:\\workspaceFz\\itc-broker-fzbop3\\fzbop3\\fzbop-uf3-secu\\src\\main\\java",
-                "com.fz.bop3.act.secu.form.ACodeOpen1",
+                "com.fz.bop3.act.secu.form.StockholderDataSwapOpen",
                 "yaoql");
     }
 
@@ -108,7 +114,8 @@ public class T3FormGenerator {
                         continue;
                     }
                     String actualColumnName = split[0];
-                    if (actualColumnName.length() <= 0 || !Pattern.matches("^[A-Za-z_]*$", actualColumnName)) {
+                    if (actualColumnName.length() <= 0 || !Pattern.matches("^[A-Za-z_0-9]*$", actualColumnName)) {
+                        System.out.println(join("获取表、字段>忽略无效字段:", actualColumnName));
                         continue;
                     }
                     String documentDesc = join(split[2], "是".equals(split[3].trim()) ? "[必填]" : "");
